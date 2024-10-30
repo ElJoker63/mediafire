@@ -6,7 +6,7 @@ This is a Python module that allows you to download files and folders from Media
 
 You can install the module using pip:
 
-pip install git+mediafire
+pip install git+https://github.com/ElJoker63/mediafire.git
 
 ## Usage
 
@@ -35,17 +35,17 @@ Resumable downloads for partially downloaded files
 Dependencies
 The module uses the following Python libraries:
 
-hashlib
-http.client
-urllib.parse
-re
-time
-io
-gzip
-requests
-gazpacho
-threading
-os
+- hashlib
+- http.client
+- urllib.parse
+- re
+- time
+- io
+- gzip
+- requests
+- gazpacho
+- threading
+- os
 
 Contributing
 If you find any issues or have suggestions for improvements, feel free to open an issue or submit a pull request on the GitHub repository.
