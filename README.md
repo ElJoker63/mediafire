@@ -1,4 +1,6 @@
-# Mediafire Downloader
+# Mediafire for Python
+
+![Mediafire](https://static.mediafire.com/images/backgrounds/header/mf_logo_u1_full_color_reversed.svg)
 
 This is a Python module that allows you to download files and folders from Mediafire. It supports multi-threading for faster downloads and provides error handling for deleted or blocked files.
 
