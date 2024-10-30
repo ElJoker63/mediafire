@@ -146,6 +146,11 @@ def get_file(key: str, output_path: str = None) -> None:
         chdir(current_dir)
     return filename
 
+def get_download_progress(filename):
+    if not hasattr(get_download_progress, "progress"):
+        get_download_progress.progress = {}
+    return get_download_progress.progress.get(filename, (0, 0))
+
 def download_file(file: dict, event: Event = None, limiter: BoundedSemaphore = None) -> None:
     if limiter:
         limiter.acquire()
@@ -196,6 +201,10 @@ def download_file(file: dict, event: Event = None, limiter: BoundedSemaphore = N
         if limiter:
             limiter.release()
         return
+    
+    total_size = int(response.getheader('Content-Length', 0))
+    bytes_downloaded = 0
+    
     with open(filename, "wb") as f:
         while True:
             chunk = response.read(4096)
@@ -211,7 +220,14 @@ def download_file(file: dict, event: Event = None, limiter: BoundedSemaphore = N
                 return
             if not chunk:
                 break
+            bytes_downloaded += len(chunk)
             f.write(chunk)
+            
+            # Update progress
+            if not hasattr(get_download_progress, "progress"):
+                get_download_progress.progress = {}
+            get_download_progress.progress[filename] = (bytes_downloaded, total_size)
+    
     conn.close()
     print(f"{bcolors.OKGREEN}{filename}{bcolors.ENDC} downloaded")
     if limiter:
