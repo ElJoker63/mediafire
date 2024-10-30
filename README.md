@@ -15,7 +15,7 @@ pip install git+https://github.com/ElJoker63/mediafire.git
 To use the module, simply import the `download_from_mediafire()` function and call it with the Mediafire URL, output path, and number of threads:
 
 ```python
-from mediafire_downloader import download_from_mediafire
+from mediafire import download_from_mediafire
 
 url = 'https://www.mediafire.com/folder/example_folder'
 output_path = 'downloads'
